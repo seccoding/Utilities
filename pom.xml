@@ -60,6 +60,11 @@
 			<version>3.14</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.14</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>4.2.5.RELEASE</version>
@@ -94,6 +99,16 @@
 		    <groupId>org.apache.tika</groupId>
 		    <artifactId>tika-app</artifactId>
 		    <version>1.10</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.apache.poi</groupId>
+		    		<artifactId>poi</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+		    		<groupId>org.apache.poi</groupId>
+		    		<artifactId>poi-ooxml</artifactId>
+		    	</exclusion>
+		    </exclusions>
 		</dependency>
 
 		
