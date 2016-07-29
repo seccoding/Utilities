@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
@@ -91,7 +92,7 @@ public class Converter {
 	}
 	
 	private void createDirectory() {
-		File dir = new File(destinationDirectory + path + fileName + "\\");
+		File dir = new File(destinationDirectory + path + UUID.randomUUID() + "\\");
 		if ( !dir.exists() ) {
 			dir.mkdirs();
 		}
