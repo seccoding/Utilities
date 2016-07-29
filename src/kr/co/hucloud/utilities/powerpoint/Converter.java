@@ -35,7 +35,7 @@ public class Converter {
 	private String path;
 	private String outputFolder;
 	
-	public void convert(File powerpointFile, String path, String type) {
+	public ConvertResult convert(File powerpointFile, String path, String type) {
 		outputFileType = type;
 		
 		this.path = path + "\\";
@@ -53,6 +53,13 @@ public class Converter {
 		createImages();
 		
 		System.out.println("변환완료");
+		
+		ConvertResult convertResult = new ConvertResult();
+		convertResult.setFileName(this.fileName);
+		convertResult.setOutputFolder(outputFolder);
+		convertResult.setPageSize(slides.size());
+		
+		return convertResult;
 	}
 	
 	private void setFileName(File powerpointFile) {
@@ -144,7 +151,31 @@ public class Converter {
 			}
 		}
 		
+	}
+	
+	public static class ConvertResult {
+		private String outputFolder;
+		private String fileName;
+		private int pageSize;
 		
+		public String getOutputFolder() {
+			return outputFolder;
+		}
+		public void setOutputFolder(String outputFolder) {
+			this.outputFolder = outputFolder;
+		}
+		public String getFileName() {
+			return fileName;
+		}
+		public void setFileName(String fileName) {
+			this.fileName = fileName;
+		}
+		public int getPageSize() {
+			return pageSize;
+		}
+		public void setPageSize(int pageSize) {
+			this.pageSize = pageSize;
+		}
 	}
 	
 }
