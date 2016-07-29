@@ -13,6 +13,7 @@ public class Test {
 		System.out.println(result.getFileName());
 		System.out.println(result.getOutputFolder());
 		System.out.println(result.getPageSize());
+		System.out.println(result.getOriginalFilePath());
 	}
 	
 }

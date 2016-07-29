@@ -18,6 +18,8 @@ import javax.imageio.ImageIO;
 import org.apache.poi.sl.usermodel.Slide;
 import org.apache.poi.sl.usermodel.SlideShow;
 
+import kr.co.hucloud.utilities.file.FileUtils;
+
 public class Converter {
 
 	private final String destinationDirectory = "D:\\powerpointToImage\\";
@@ -54,10 +56,13 @@ public class Converter {
 		
 		System.out.println("변환완료");
 		
+		FileUtils.copy(powerpointFile.getAbsolutePath(), outputFolder + powerpointFile.getName());
+		
 		ConvertResult convertResult = new ConvertResult();
 		convertResult.setFileName(this.fileName);
 		convertResult.setOutputFolder(outputFolder);
 		convertResult.setPageSize(slides.size());
+		convertResult.setOriginalFilePath(outputFolder + powerpointFile.getName());
 		
 		return convertResult;
 	}
@@ -154,10 +159,17 @@ public class Converter {
 	}
 	
 	public static class ConvertResult {
+		private String originalFilePath;
 		private String outputFolder;
 		private String fileName;
 		private int pageSize;
 		
+		public String getOriginalFilePath() {
+			return originalFilePath;
+		}
+		public void setOriginalFilePath(String originalFilePath) {
+			this.originalFilePath = originalFilePath;
+		}
 		public String getOutputFolder() {
 			return outputFolder;
 		}
