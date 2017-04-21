@@ -23,10 +23,10 @@ public class ListPageExplorer implements PageExplorer {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<script>");
 		buffer.append("function movePage(pageNo) {");
-		buffer.append("$(\"#"+link+"\").val(pageNo);");
-		buffer.append("$(\"#"+formId+"\").attr('action', '');");
-		buffer.append("$(\"#"+formId+"\").attr('method', 'post');");
-		buffer.append("$(\"#"+formId+"\").submit();");
+		buffer.append("document.getElementById('" + formId + "')." + link + ".value=pageNo;");
+		buffer.append("document.getElementById('" + formId + "').action='';");
+		buffer.append("document.getElementById('" + formId + "').method='post';");
+		buffer.append("document.getElementById('" + formId + "').submit();");
 		buffer.append("}");
 		buffer.append("</script>");
 		
@@ -45,6 +45,9 @@ public class ListPageExplorer implements PageExplorer {
 		
 		if ( endPageNumber - startPageNumber < pager.printPage ) {
 			startPageNumber = startPageNumber - (pager.printPage - (endPageNumber - startPageNumber));
+			if ( startPageNumber < 0 ) {
+				startPageNumber = 0;
+			}
 		}
 		
 		String pageNumber = "";
@@ -59,10 +62,10 @@ public class ListPageExplorer implements PageExplorer {
 				pageNumber = "<b>" + pageNumber + "</b>";
 			}
 			
-			buffer.append("<a href=\"javascript:movePage('" + i + "')\">" + pageNumber + "</a>");
+			buffer.append("<a class='page' href=\"javascript:movePage('" + i + "')\">" + pageNumber + "</a>");
 		}
 		
-		if ( pager.pageNo < endPageNumber ) {
+		if ( pager.pageNo < endPageNumber-1 ) {
 			buffer.append("<a href=\"javascript:movePage('" + (pager.pageNo + 1) + "')\">" + next + "</a>");
 		}
 
