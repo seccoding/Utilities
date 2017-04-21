@@ -23,10 +23,10 @@ public class ClassicPageExplorer implements PageExplorer {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<script>");
 		buffer.append("function movePage(pageNo) {");
-		buffer.append("$(\"#"+link+"\").val(pageNo);");
-		buffer.append("$(\"#"+formId+"\").attr('action', '');");
-		buffer.append("$(\"#"+formId+"\").attr('method', 'post');");
-		buffer.append("$(\"#"+formId+"\").submit();");
+		buffer.append("document.getElementById('" + formId + "')." + link + ".value=pageNo;");
+		buffer.append("document.getElementById('" + formId + "').action='';");
+		buffer.append("document.getElementById('" + formId + "').method='post';");
+		buffer.append("document.getElementById('" + formId + "').submit();");
 		buffer.append("}");
 		buffer.append("</script>");
 		
