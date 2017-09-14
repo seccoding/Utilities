@@ -19,57 +19,24 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DownloadUtil {
 
-	private String uploadPath;
+	private String uploadPathWithFileName;
 	
-	/**
-	 * 파일이 업로드 되어 있는 경로를 가져옴.
-	 * @return
-	 */
-	public String getUploadPath() {
-		return uploadPath;
-	}
-	/**
-	 * 파일이 업로드 되어 있는 경로를 지정.
-	 * @param uploadPath
-	 */
-	public void setUploadPath(String uploadPath) {
-		this.uploadPath = uploadPath;
-	}
-	
-	private static DownloadUtil downloadUtil;
-	
-	private DownloadUtil() {}
-	
-	/**
-	 * DownloadUtil 인스턴스를 가져옴.
-	 * @param filePath 다운로드 하려는 파일이 위치한 서버상의 물리적인 절대 경로
-	 * @return
-	 */
-	public static DownloadUtil getInstance(String filePath) {
-		
-		if ( downloadUtil == null ) {
-			downloadUtil = new DownloadUtil();
-		}
-		
-		downloadUtil.setUploadPath(filePath);
-		
-		return downloadUtil;
+	public DownloadUtil(String uploadPathWithFileName) {
+		this.uploadPathWithFileName = uploadPathWithFileName;
 	}
 	
 	/**
 	 * 파일을 다운로드 함.
 	 * @param request
 	 * @param response
-	 * @param realFileName 서버에 존재하는 물리적인 파일의 이름
 	 * @param displayFileName 다운로드 할 때 사용자에게 보여질 파일의 이름
 	 * @throws UnsupportedEncodingException
 	 */
 	public void download(HttpServletRequest request,
 						HttpServletResponse response,
-						String realFileName,
 						String displayFileName) throws UnsupportedEncodingException {
 		
-		File downloadFile = new File(this.getUploadPath() + File.separator + realFileName);
+		File downloadFile = new File(uploadPathWithFileName);
 		
 		response.setContentType("application/download; charset=utf-8");
 		response.setContentLength( (int) downloadFile.length());
