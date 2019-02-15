@@ -2,13 +2,13 @@ package io.github.seccoding.utilities.powerpoint;
 
 import java.io.File;
 
-import io.github.seccoding.utilities.powerpoint.Converter.ConvertResult;
+import io.github.seccoding.utilities.powerpoint.Converter.Result;
 
 public class Test {
 
 	public static void main(String[] args) {
 		Converter converter = new Converter();
-		ConvertResult result = converter.convert(new File("D:\\Java_신교재.pptx"), "11", "jpg");
+		Result result = converter.convert(new File("D:\\Java_신교재.pptx"), "11", "jpg");
 		
 		System.out.println(result.getFileName());
 		System.out.println(result.getOutputFolder());

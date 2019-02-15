@@ -38,7 +38,7 @@ public class Converter {
 	private String path;
 	private String outputFolder;
 	
-	public ConvertResult convert(File powerpointFile, String path, String type) {
+	public Result convert(File powerpointFile, String path, String type) {
 		outputFileType = type;
 		
 		this.path = path + "\\";
@@ -59,7 +59,7 @@ public class Converter {
 		
 		FileUtils.copy(powerpointFile.getAbsolutePath(), outputFolder + powerpointFile.getName());
 		
-		ConvertResult convertResult = new ConvertResult();
+		Result convertResult = new Result();
 		convertResult.setFileName(this.fileName);
 		convertResult.setOutputFolder(outputFolder);
 		convertResult.setPageSize(slides.size());
@@ -159,7 +159,7 @@ public class Converter {
 		
 	}
 	
-	public static class ConvertResult {
+	public static class Result {
 		private String originalFilePath;
 		private String outputFolder;
 		private String fileName;
